@@ -1,8 +1,8 @@
-package me.jantuck.kotlinplugin
+package me.jantuck.twerktree
 
 import org.bukkit.plugin.java.JavaPlugin
 
-class KotlinPlugin : JavaPlugin() {
+class Twerktree : JavaPlugin() {
     override fun onEnable() {
     }
 }
