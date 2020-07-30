@@ -35,7 +35,7 @@ object ReflectionSupplier {
     /**
      * Craft world is the same on all versions // Atleast for my usages.
      */
-    val CRAFT_WORLD_CLASS: Class<*> by lazy { getNMSClass("CraftWorld", false)}
+    val CRAFT_WORLD_CLASS: Class<*> by lazy { getNMSClass("CraftWorld", false) }
     val CRAFT_WORLD_METHOD_ACCESS: MethodAccess by lazy {
         MethodAccess.get(CRAFT_WORLD_CLASS)
     }
@@ -65,13 +65,21 @@ object ReflectionSupplier {
      * Only used in 1.8->1.12
      */
     val NMS_BLOCK_POSITION_CONSTRUCTOR: MethodHandle by lazy {
-        MethodHandles.lookup().findConstructor(NMS_BLOCK_POSITION_CLASS, MethodType.methodType(Void.TYPE, Int::class.javaPrimitiveType, Int::class.javaPrimitiveType, Int::class.javaPrimitiveType))
+        MethodHandles.lookup().findConstructor(
+            NMS_BLOCK_POSITION_CLASS,
+            MethodType.methodType(
+                Void.TYPE,
+                Int::class.javaPrimitiveType,
+                Int::class.javaPrimitiveType,
+                Int::class.javaPrimitiveType
+            )
+        )
     }
 
     /**
      * GENERATOR access has the trigger effect method in newer version. I'm gonna assume it is only on 1.13->1.16+
      */
-    val GENERATOR_ACCESS_CLASS: Class<*> by lazy { getNMSClass("GeneratorAccess")}
+    val GENERATOR_ACCESS_CLASS: Class<*> by lazy { getNMSClass("GeneratorAccess") }
     val GENERATOR_ACCESS_METHOD_ACCESS: MethodAccess by lazy {
         MethodAccess.get(GENERATOR_ACCESS_CLASS)
     }
@@ -96,24 +104,30 @@ object ReflectionSupplier {
     }
 
     val NMS_BONE_MEAL_APPLY_INDEX: Int by lazy {
-        when (getLegacy()){
-            LegacyType.OLD_OLD -> NMS_BONE_MEAL_METHOD_ACCCESS.getIndex("a",
+        when (getLegacy()) {
+            LegacyType.OLD_OLD -> NMS_BONE_MEAL_METHOD_ACCCESS.getIndex(
+                "a",
                 NMS_ITEM_STACK_CLASS,
                 NMS_WORLD_CLASS,
                 Int::class.javaPrimitiveType,
                 Int::class.javaPrimitiveType,
-                Int::class.javaPrimitiveType)
-            else -> NMS_BONE_MEAL_METHOD_ACCCESS.getIndex("a", NMS_ITEM_STACK_CLASS, NMS_WORLD_CLASS, NMS_BLOCK_POSITION_CLASS)
+                Int::class.javaPrimitiveType
+            )
+            else -> NMS_BONE_MEAL_METHOD_ACCCESS.getIndex(
+                "a",
+                NMS_ITEM_STACK_CLASS,
+                NMS_WORLD_CLASS,
+                NMS_BLOCK_POSITION_CLASS
+            )
         }
     }
 
 
-
-    enum class LegacyType(val old: Boolean, val lessNew: Boolean = false) {
-        OLD_OLD(true), OLD(true), NEW(false, true), NEWER(false)
+    enum class LegacyType(val old: Boolean, val new: Boolean = false) {
+        OLD_OLD(true), OLD(true), NEW(false, true), NEWER(false, true)
     }
 
-    fun getLegacy() : LegacyType{
+    fun getLegacy(): LegacyType {
         return when {
             version.startsWith("v1_7") -> LegacyType.OLD_OLD
             version.startsWith("v1_8") -> LegacyType.OLD
@@ -129,7 +143,7 @@ object ReflectionSupplier {
         }
     }
 
-    private fun getNMSClass(str: String, isNMS: Boolean = true) : Class<*> {
+    private fun getNMSClass(str: String, isNMS: Boolean = true): Class<*> {
         return if (isNMS)
             Class.forName("net.minecraft.server.$version.$str")
         else

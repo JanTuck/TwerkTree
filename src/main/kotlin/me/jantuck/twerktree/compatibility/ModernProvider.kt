@@ -1,6 +1,5 @@
 package me.jantuck.twerktree.compatibility
 
-import net.minecraft.server.v1_14_R1.ItemBoneMeal
 import org.bukkit.Material
 import org.bukkit.block.Block
 import org.bukkit.inventory.ItemStack
@@ -9,15 +8,8 @@ class ModernProvider {
 
     private val boneMealItemStack by lazy {
         @Suppress("DEPRECATION")
-        when (ReflectionSupplier.getLegacy()) {
-            ReflectionSupplier.LegacyType.NEWER -> ReflectionSupplier
-                .CRAFT_ITEM_STACK_METHOD_ACCESS
-                .invoke(
-                    null,
-                    ReflectionSupplier.CRAFT_ITEM_STACK_AS_NMS_COPY,
-                    ItemStack(Material.BONE_MEAL)
-                )
-            ReflectionSupplier.LegacyType.NEW -> ReflectionSupplier
+        when (ReflectionSupplier.getLegacy().new) {
+            true -> ReflectionSupplier
                 .CRAFT_ITEM_STACK_METHOD_ACCESS
                 .invoke(
                     null,

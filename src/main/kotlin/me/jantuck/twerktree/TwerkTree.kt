@@ -27,7 +27,7 @@ class TwerkTree : JavaPlugin(), Listener {
     }
 
     @EventHandler
-    fun PlayerToggleSneakEvent.onSneak(){
+    fun PlayerToggleSneakEvent.onSneak() {
         val player = this.player
         if (!player.isSneaking)
             return
@@ -38,11 +38,11 @@ class TwerkTree : JavaPlugin(), Listener {
         val z = location.blockZ
         for (xOff in -flatRange..flatRange)
             for (yOff in -yRange..yRange)
-                for (zOff in -flatRange..flatRange){
+                for (zOff in -flatRange..flatRange) {
                     val block = world.getBlockAt(x + xOff, y + yOff, z + zOff)
                     val blockType = block.type
                     val blockName = blockType.name
-                    if (allowedBlockMaterials.any { it == blockType } || regexAllowedBlock.any { it.matches(blockName) }){
+                    if (allowedBlockMaterials.any { it == blockType } || regexAllowedBlock.any { it.matches(blockName) }) {
                         provider.boneMeal(block)
                     }
                 }
