@@ -34,11 +34,13 @@ dependencies {
     compileOnly("org.spigotmc", "spigot", "1.10.2-R0.1-SNAPSHOT")
     compileOnly("org.spigotmc", "spigot", "1.11-R0.1-SNAPSHOT")
     compileOnly("org.spigotmc", "spigot", "1.12.2-R0.1-SNAPSHOT")
-    compileOnly("org.spigotmc", "spigot", "1.13.2-R0.1-SNAPSHOT")
     compileOnly("org.spigotmc", "spigot", "1.14.4-R0.1-SNAPSHOT")
     compileOnly("org.spigotmc", "spigot", "1.15.2-R0.1-SNAPSHOT")
      */
-    compileOnly("org.spigotmc", "spigot", "1.16.1-R0.1-SNAPSHOT")
+    //compileOnly("org.spigotmc", "spigot", "1.16.1-R0.1-SNAPSHOT")
+
+    //compileOnly("org.spigotmc", "spigot", "1.13.2-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc", "spigot", "1.14.4-R0.1-SNAPSHOT")
 }
 
 spigot {

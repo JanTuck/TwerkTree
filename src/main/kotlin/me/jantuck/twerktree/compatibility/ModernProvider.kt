@@ -1,5 +1,6 @@
 package me.jantuck.twerktree.compatibility
 
+import net.minecraft.server.v1_14_R1.ItemBoneMeal
 import org.bukkit.Material
 import org.bukkit.block.Block
 import org.bukkit.inventory.ItemStack
@@ -10,6 +11,13 @@ class ModernProvider {
         @Suppress("DEPRECATION")
         when (ReflectionSupplier.getLegacy()) {
             ReflectionSupplier.LegacyType.NEWER -> ReflectionSupplier
+                .CRAFT_ITEM_STACK_METHOD_ACCESS
+                .invoke(
+                    null,
+                    ReflectionSupplier.CRAFT_ITEM_STACK_AS_NMS_COPY,
+                    ItemStack(Material.BONE_MEAL)
+                )
+            ReflectionSupplier.LegacyType.NEW -> ReflectionSupplier
                 .CRAFT_ITEM_STACK_METHOD_ACCESS
                 .invoke(
                     null,
@@ -36,7 +44,7 @@ class ModernProvider {
                     block.z
                 )
             )
-            ReflectionSupplier.LegacyType.NEWER -> arrayOf(
+            else -> arrayOf(
                 ReflectionSupplier.CRAFT_BLOCK_METHOD_ACCESS.invoke(
                     block,
                     ReflectionSupplier.GET_POSITION_METHOD_INDEX
@@ -58,7 +66,6 @@ class ModernProvider {
                 ),
                 *getBlockPosition(block)
             )
-
         applyEffect(block)
     }
 

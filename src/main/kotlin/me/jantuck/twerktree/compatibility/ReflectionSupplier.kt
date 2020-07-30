@@ -109,8 +109,8 @@ object ReflectionSupplier {
 
 
 
-    enum class LegacyType(val old: Boolean) {
-        OLD_OLD(true), OLD(true), NEWER(false)
+    enum class LegacyType(val old: Boolean, val lessNew: Boolean = false) {
+        OLD_OLD(true), OLD(true), NEW(false, true), NEWER(false)
     }
 
     fun getLegacy() : LegacyType{
@@ -121,7 +121,7 @@ object ReflectionSupplier {
             version.startsWith("v1_10") -> LegacyType.OLD
             version.startsWith("v1_11") -> LegacyType.OLD
             version.startsWith("v1_12") -> LegacyType.OLD
-            version.startsWith("v1_13") -> LegacyType.NEWER
+            version.startsWith("v1_13") -> LegacyType.NEW
             version.startsWith("v1_14") -> LegacyType.NEWER
             version.startsWith("v1_15") -> LegacyType.NEWER
             version.startsWith("v1_16") -> LegacyType.NEWER
