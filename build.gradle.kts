@@ -32,6 +32,7 @@ tasks {
         archiveClassifier.set("")
         val packageName = "${project.group}.${project.name.toLowerCase()}"
         relocate("kotlin", "$packageName.shaded.kotlin")
+        relocate("com.esotericsoftware", "$packageName.shaded")
         minimize()
     }
 }
