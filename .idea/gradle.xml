@@ -14,12 +14,6 @@
       </GradleProjectSettings>
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/TwerkTree1_9" />
-        <option name="modules">
-          <set>
-            <option value="$PROJECT_DIR$/TwerkTree1_9" />
-          </set>
-        </option>
       </GradleProjectSettings>
     </option>
   </component>
