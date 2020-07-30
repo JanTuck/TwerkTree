@@ -28,6 +28,9 @@ spigot {
 
 
 tasks {
+    compileKotlin {
+        kotlinOptions.jvmTarget = "1.8"
+    }
     withType<ShadowJar> {
         archiveClassifier.set("")
         val packageName = "${project.group}.${project.name.toLowerCase()}"
