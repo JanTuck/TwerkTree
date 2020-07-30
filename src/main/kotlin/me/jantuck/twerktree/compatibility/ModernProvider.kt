@@ -47,7 +47,7 @@ class ModernProvider {
 
     fun boneMeal(block: Block) {
         ReflectionSupplier
-            .NMS_BONE_MEAL_METHOD_ACCCESS
+            .NMS_BONE_MEAL_METHOD_ACCESS
             .invoke(
                 null,
                 ReflectionSupplier.NMS_BONE_MEAL_APPLY_INDEX,
