@@ -115,10 +115,6 @@ object ReflectionSupplier {
 
     fun getLegacy() : LegacyType{
         return when {
-            version.startsWith("v1_3") -> LegacyType.OLD_OLD // These... Probably works?
-            version.startsWith("v1_4") -> LegacyType.OLD_OLD // These... Probably works?
-            version.startsWith("v1_5") -> LegacyType.OLD_OLD // These... Probably works?
-            version.startsWith("v1_6") -> LegacyType.OLD_OLD // These... Probably works?
             version.startsWith("v1_7") -> LegacyType.OLD_OLD
             version.startsWith("v1_8") -> LegacyType.OLD
             version.startsWith("v1_9") -> LegacyType.OLD
