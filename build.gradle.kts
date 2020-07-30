@@ -25,8 +25,20 @@ repositories {
 }
 
 dependencies {
-    implementation(project(":1_16Compat"))
-    compileOnly("com.destroystokyo.paper", "paper-api", "1.16.1-R0.1-SNAPSHOT") // For the bukkit api
+    implementation("com.esotericsoftware", "reflectasm", "1.11.9") // Used for the "other" compatibility implementation
+
+    /*
+    compileOnly(files("libs/PaperSpigot-1.7.10-R0.1-SNAPSHOT-latest.jar"))
+    compileOnly("org.spigotmc", "spigot", "1.8.8-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc", "spigot", "1.9.4-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc", "spigot", "1.10.2-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc", "spigot", "1.11-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc", "spigot", "1.12.2-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc", "spigot", "1.13.2-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc", "spigot", "1.14.4-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc", "spigot", "1.15.2-R0.1-SNAPSHOT")
+     */
+    compileOnly("org.spigotmc", "spigot", "1.16.1-R0.1-SNAPSHOT")
 }
 
 spigot {

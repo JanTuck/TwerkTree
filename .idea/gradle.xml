@@ -9,18 +9,15 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/1_10Compat" />
-            <option value="$PROJECT_DIR$/1_12Compat" />
-            <option value="$PROJECT_DIR$/1_13Compat" />
-            <option value="$PROJECT_DIR$/1_14Compat" />
-            <option value="$PROJECT_DIR$/1_15Compat" />
-            <option value="$PROJECT_DIR$/1_16Compat" />
-            <option value="$PROJECT_DIR$/1_7" />
-            <option value="$PROJECT_DIR$/1_7Compat" />
-            <option value="$PROJECT_DIR$/1_8Compat" />
-            <option value="$PROJECT_DIR$/1_9Compat" />
-            <option value="$PROJECT_DIR$/Common" />
-            <option value="$PROJECT_DIR$/ReflectionCompat" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/TwerkTree1_9" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/TwerkTree1_9" />
           </set>
         </option>
       </GradleProjectSettings>

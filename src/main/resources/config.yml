@@ -1,0 +1,6 @@
+allowedBlocks:
+  regex:
+    - ".*SAPLING.*"
+  absolute: # Also a string list
+flatRange: 5 # How large should the z & x offset be,
+yRange: 5 # Should we look up and down? Set to 1 to look in -1..+1 set to 0 to only look at current y
