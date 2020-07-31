@@ -8,7 +8,7 @@ import java.lang.invoke.MethodType
 
 object ReflectionSupplier {
 
-    private val version = Bukkit.getServer().javaClass.packageName.split(".")[3]
+    private val version = Bukkit.getServer().javaClass.name.split(".")[3]
 
     private val CRAFT_BLOCK_CLASS: Class<*> by lazy { getNMSClass("block.CraftBlock", false) }
     val CRAFT_BLOCK_METHOD_ACCESS: MethodAccess by lazy {
