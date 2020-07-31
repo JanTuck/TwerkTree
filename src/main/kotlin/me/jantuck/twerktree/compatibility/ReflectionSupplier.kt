@@ -129,16 +129,18 @@ object ReflectionSupplier {
 
     fun getLegacy(): LegacyType {
         return when {
-            version.startsWith("v1_7") -> LegacyType.OLD_OLD
-            version.startsWith("v1_8") -> LegacyType.OLD
+            version.startsWith("v1_5") -> LegacyType.OLD_OLD // Testde and working
+            version.startsWith("v1_6") -> LegacyType.OLD_OLD
+            version.startsWith("v1_7") -> LegacyType.OLD_OLD // Tested and working
+            version.startsWith("v1_8") -> LegacyType.OLD // Tested and working
             version.startsWith("v1_9") -> LegacyType.OLD
             version.startsWith("v1_10") -> LegacyType.OLD
             version.startsWith("v1_11") -> LegacyType.OLD
-            version.startsWith("v1_12") -> LegacyType.OLD
-            version.startsWith("v1_13") -> LegacyType.NEW
+            version.startsWith("v1_12") -> LegacyType.OLD // Tested and working
+            version.startsWith("v1_13") -> LegacyType.NEW // Tested and working
             version.startsWith("v1_14") -> LegacyType.NEWER
             version.startsWith("v1_15") -> LegacyType.NEWER
-            version.startsWith("v1_16") -> LegacyType.NEWER
+            version.startsWith("v1_16") -> LegacyType.NEWER // Tested and working
             else -> LegacyType.NEWER
         }
     }
