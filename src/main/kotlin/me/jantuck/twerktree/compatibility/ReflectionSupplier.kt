@@ -56,7 +56,7 @@ object ReflectionSupplier {
 
     val TRIGGER_EFFECT_METHOD_ACCESS: MethodAccess by lazy {
         when (getLegacy()) {
-            LegacyType.NEWER ->  MethodAccess.get(GENERATOR_ACCESS_CLASS)
+            LegacyType.NEWER -> MethodAccess.get(GENERATOR_ACCESS_CLASS)
             else -> MethodAccess.get(NMS_WORLD_CLASS)
         }
     }
