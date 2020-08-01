@@ -62,32 +62,16 @@ class ModernProvider {
     }
 
     private fun applyEffect(block: Block) {
-        when (ReflectionSupplier.getLegacy()) {
-            ReflectionSupplier.LegacyType.NEWER -> { // Nicer
-                ReflectionSupplier.GENERATOR_ACCESS_METHOD_ACCESS.invoke(
-                    ReflectionSupplier.CRAFT_WORLD_METHOD_ACCESS.invoke(
-                        block.world,
-                        ReflectionSupplier.CRAFT_WORLD_HANDLE_METHOD_INDEX
-                    ),
-                    ReflectionSupplier.TRIGGER_EFFECT_INDEX,
-                    2005,
-                    *getBlockPosition(block),
-                    0
-                )
-            }
-            else -> { // Ewie
-                ReflectionSupplier.NMS_WORLD_METHOD_ACCESS.invoke(
-                    ReflectionSupplier.CRAFT_WORLD_METHOD_ACCESS.invoke(
-                        block.world,
-                        ReflectionSupplier.CRAFT_WORLD_HANDLE_METHOD_INDEX
-                    ),
-                    ReflectionSupplier.TRIGGER_EFFECT_WORLD_INDEX,
-                    2005,
-                    *getBlockPosition(block),
-                    0
-                )
-            }
-        }
+        ReflectionSupplier.TRIGGER_EFFECT_METHOD_ACCESS.invoke(
+            ReflectionSupplier.CRAFT_WORLD_METHOD_ACCESS.invoke(
+                block.world,
+                ReflectionSupplier.CRAFT_WORLD_HANDLE_METHOD_INDEX
+            ),
+            ReflectionSupplier.TRIGGER_EFFECT_INDEX,
+            2005,
+            *getBlockPosition(block),
+            0
+        )
     }
 
 }

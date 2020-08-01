@@ -47,11 +47,21 @@ object ReflectionSupplier {
     private val NMS_WORLD_CLASS: Class<*> by lazy {
         getNMSClass("World")
     }
-    val NMS_WORLD_METHOD_ACCESS: MethodAccess by lazy {
-        MethodAccess.get(NMS_WORLD_CLASS)
+
+
+    /**
+     * GENERATOR access has the trigger effect method in newer version. I'm gonna assume it is only on 1.14->1.16+
+     */
+    private val GENERATOR_ACCESS_CLASS: Class<*> by lazy { getNMSClass("GeneratorAccess") }
+
+    val TRIGGER_EFFECT_METHOD_ACCESS: MethodAccess by lazy {
+        when (getLegacy()) {
+            LegacyType.NEWER ->  MethodAccess.get(GENERATOR_ACCESS_CLASS)
+            else -> MethodAccess.get(NMS_WORLD_CLASS)
+        }
     }
-    val TRIGGER_EFFECT_WORLD_INDEX: Int by lazy {
-        NMS_WORLD_METHOD_ACCESS.getIndex("triggerEffect")
+    val TRIGGER_EFFECT_INDEX: Int by lazy {
+        TRIGGER_EFFECT_METHOD_ACCESS.getIndex("triggerEffect")
     }
 
     /**
@@ -74,17 +84,6 @@ object ReflectionSupplier {
                 Int::class.javaPrimitiveType
             )
         )
-    }
-
-    /**
-     * GENERATOR access has the trigger effect method in newer version. I'm gonna assume it is only on 1.13->1.16+
-     */
-    private val GENERATOR_ACCESS_CLASS: Class<*> by lazy { getNMSClass("GeneratorAccess") }
-    val GENERATOR_ACCESS_METHOD_ACCESS: MethodAccess by lazy {
-        MethodAccess.get(GENERATOR_ACCESS_CLASS)
-    }
-    val TRIGGER_EFFECT_INDEX: Int by lazy {
-        GENERATOR_ACCESS_METHOD_ACCESS.getIndex("triggerEffect")
     }
 
     private val NMS_ITEM_STACK_CLASS: Class<*> by lazy {
