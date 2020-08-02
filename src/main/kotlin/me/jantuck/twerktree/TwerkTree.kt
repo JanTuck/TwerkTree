@@ -43,7 +43,9 @@ class TwerkTree : JavaPlugin(), Listener {
                     val blockType = block.type
                     val blockName = blockType.name
                     if (allowedBlockMaterials.any { it == blockType } || regexAllowedBlock.any { it.matches(blockName) }) {
-                        provider.boneMeal(block)
+                        provider.boneMeal(block,
+                            player,
+                            config.getBoolean("use-permissions", false) to config.getBoolean("allow-particles", true) )
                     }
                 }
     }

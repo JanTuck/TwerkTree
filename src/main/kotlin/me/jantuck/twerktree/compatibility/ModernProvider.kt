@@ -2,6 +2,7 @@ package me.jantuck.twerktree.compatibility
 
 import org.bukkit.Material
 import org.bukkit.block.Block
+import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 
 class ModernProvider {
@@ -45,7 +46,13 @@ class ModernProvider {
         }
     }
 
-    fun boneMeal(block: Block) {
+    /**
+     * Config will contain the values of use-permissions and allow-particles in that order
+     */
+    fun boneMeal(block: Block, player: Player, config: Pair<Boolean, Boolean>) {
+        if (config.first && !player.hasPermission("twerktree.twerk"))
+            return
+
         ReflectionSupplier
             .NMS_BONE_MEAL_METHOD_ACCESS
             .invoke(
@@ -58,10 +65,12 @@ class ModernProvider {
                 ),
                 *getBlockPosition(block)
             )
-        applyEffect(block)
+        applyEffect(block, player, config)
     }
 
-    private fun applyEffect(block: Block) {
+    private fun applyEffect(block: Block, player: Player, config: Pair<Boolean, Boolean>) {
+        if (!config.second || config.first && !player.hasPermission("twerktree.particles"))
+            return
         ReflectionSupplier.TRIGGER_EFFECT_METHOD_ACCESS.invoke(
             ReflectionSupplier.CRAFT_WORLD_METHOD_ACCESS.invoke(
                 block.world,
