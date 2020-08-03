@@ -43,9 +43,16 @@ class TwerkTree : JavaPlugin(), Listener {
                     val blockType = block.type
                     val blockName = blockType.name
                     if (allowedBlockMaterials.any { it == blockType } || regexAllowedBlock.any { it.matches(blockName) }) {
-                        provider.boneMeal(block,
+                        provider.boneMeal(
+                            block,
                             player,
-                            config.getBoolean("use-permissions", false) to config.getBoolean("allow-particles", true) )
+                            Triple(
+                                config.getBoolean("use-permissions", false),
+                                config.getBoolean("allow-particles", true),
+                                config.getInt("effect-id", 2005)
+                            ),
+                            config.getBoolean("cooldown.enable", false) to config.getInt("cooldown.cooldown", 0)
+                        )
                     }
                 }
     }

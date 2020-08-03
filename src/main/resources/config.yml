@@ -4,5 +4,9 @@ allowedBlocks:
   absolute: # Also a string list
 flatRange: 5 # How large should the z & x offset be,
 yRange: 5 # Should we look up and down? Set to 1 to look in -1..+1 set to 0 to only look at current y
-use-permissions: false # twerktree.twerk && twerktree.particles
+use-permissions: false # twerktree.twerk && twerktree.particles && twerktree.cooldownexempt if cooldown is enabled
 allow-particles: true
+effect-id: 2005 # See ids at https://wiki.vg/Protocol#Effect pls, make sure to only use ids that are available in your version. 2005 is bonemeal
+cooldown:
+  enable: false
+  cooldown: 5000 # In miliseconds.
