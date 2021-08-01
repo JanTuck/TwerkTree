@@ -57,6 +57,7 @@ object ReflectionSupplier {
     val TRIGGER_EFFECT_METHOD_ACCESS: MethodAccess by lazy {
         when (getLegacy()) {
             LegacyType.NEWER -> MethodAccess.get(GENERATOR_ACCESS_CLASS)
+            LegacyType.NEWEST -> MethodAccess.get(GENERATOR_ACCESS_CLASS)
             else -> MethodAccess.get(NMS_WORLD_CLASS)
         }
     }
@@ -123,7 +124,7 @@ object ReflectionSupplier {
 
 
     enum class LegacyType(val old: Boolean, val new: Boolean = false) {
-        OLD_OLD(true), OLD(true), NEW(false, true), NEWER(false, true)
+        OLD_OLD(true), OLD(true), NEW(false, true), NEWER(false, true), NEWEST(false, true)
     }
 
     fun getLegacy(): LegacyType {
@@ -140,13 +141,28 @@ object ReflectionSupplier {
             version.startsWith("v1_14") -> LegacyType.NEWER
             version.startsWith("v1_15") -> LegacyType.NEWER
             version.startsWith("v1_16") -> LegacyType.NEWER // Tested and working
-            else -> LegacyType.NEWER
+            version.startsWith("v1_17") -> LegacyType.NEWEST
+            else -> LegacyType.NEWEST
         }
     }
 
-    private fun getNMSClass(str: String, isNMS: Boolean = true): Class<*> {
+    private fun getNMSMappedClass(str: String) : String{
+        return when (str){
+            "World" -> "net.minecraft.world.level.World"
+            "GeneratorAccess" -> "net.minecraft.world.level.GeneratorAccess"
+            "BlockPosition" -> "net.minecraft.core.BlockPosition"
+            "ItemStack" -> "net.minecraft.world.item.ItemStack"
+            "ItemBoneMeal" -> "net.minecraft.world.item.ItemBoneMeal"
+            else -> "net.minecraft.server.$version.$str"
+        }
+    }
+
+    private fun getNMSClass(str: String, isNMS: Boolean = true, ignoreNew:Boolean = false): Class<*> {
         return if (isNMS)
-            Class.forName("net.minecraft.server.$version.$str")
+            if (LegacyType.NEWEST == getLegacy() && !ignoreNew)
+                Class.forName(getNMSMappedClass(str))
+            else
+                Class.forName("net.minecraft.server.$version.$str")
         else
             Class.forName("org.bukkit.craftbukkit.$version.$str")
     }
